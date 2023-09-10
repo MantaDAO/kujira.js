@@ -3,13 +3,15 @@ import { ChainInfo, FeeCurrency } from "@keplr-wallet/types";
 export const MAINNET = "kaiyo-1";
 export const TESTNET = "harpoon-4";
 export const LOCALNET = "localkujira";
+export const TERRA = "phoenix-1";
 
-export type NETWORK = typeof MAINNET | typeof TESTNET | typeof LOCALNET;
+export type NETWORK = typeof MAINNET | typeof TESTNET | typeof LOCALNET | typeof TERRA;
 
 export const NETWORKS = {
   [TESTNET]: "Testnet",
   [MAINNET]: "Mainnet",
   [LOCALNET]: "Local",
+  [TERRA]: "Terra"
 };
 
 export const RPCS: Record<string, string[]> = {
@@ -46,9 +48,16 @@ export const RPCS: Record<string, string[]> = {
     "https://gravitybridge.rpc.kjnodes.com",
     "https://gravitybridge-rpc.lavenderfive.com",
   ],
+   [TERRA]: [
+     "https://rpc.terrav2.ccvalidators.com:443/",
+     "https://terra2-rpc.lavenderfive.com:443",
+     "https://rpc-terra2.whispernode.com:443",
+     "https://phoenix-rpc.terra.dev:443",
+     "https://terra-phoenix-rpc.highstakes.ch:26657/"
+  ],
 };
 
-const chainInfo = (
+const kujiraChainInfo = (
   chainId: string,
   chainName: string,
   rpc: string,
@@ -97,12 +106,81 @@ const chainInfo = (
   coinType: 118,
 });
 
+const terraChainInfo = (
+  chainId: string,
+  chainName: string,
+  rpc: string,
+  rest: string,
+  fees: FeeCurrency[] = []
+) => ({
+  chainId,
+  chainName,
+  rpc,
+  rest,
+  bip44: {
+    coinType: 118,
+  },
+  bech32Config: {
+    bech32PrefixAccAddr: "terra",
+    bech32PrefixAccPub: "terra" + "pub",
+    bech32PrefixValAddr: "terra" + "valoper",
+    bech32PrefixValPub: "terra" + "valoperpub",
+    bech32PrefixConsAddr: "terra" + "valcons",
+    bech32PrefixConsPub: "terra" + "valconspub",
+  },
+  currencies: [
+    {
+      coinDenom: "LUNA",
+      coinMinimalDenom: "uluna",
+      coinDecimals: 6,
+      coinGeckoId: "terra-luna-2",
+    },
+    ...fees,
+  ],
+  feeCurrencies: [
+    {
+      coinDenom: "LUNA",
+      coinMinimalDenom: "uluna",
+      coinDecimals: 6,
+      coinGeckoId: "terra-luna-2",
+    },
+    ...fees,
+  ],
+  stakeCurrency: {
+    coinDenom: "LUNA",
+    coinMinimalDenom: "uluna",
+    coinDecimals: 6,
+    coinGeckoId: "terra-luna-2",
+  },
+  coinType: 118,
+});
+
 export const CHAIN_INFO: Record<NETWORK, ChainInfo> = {
-  [TESTNET]: chainInfo(
+    [TERRA]: terraChainInfo(
+    TERRA,
+    "Terra Mainnet",
+    "https://terra2-rpc.lavenderfive.com:443",
+    "https://test-lcd-kujira.mintthemoon.xyz",
+    [
+      {
+        coinDenom: "LUNA",
+        coinMinimalDenom:
+          "uluna",
+        coinDecimals: 6,
+        coinGeckoId: "terra-luna-2",
+        gasPriceStep: {
+          low: 0.00125,
+          average: 0.0025,
+          high: 0.00375,
+        },
+      },
+    ]
+  ),
+  [TESTNET]: kujiraChainInfo(
     TESTNET,
     "Kujira Testnet",
     "https://test-rpc-kujira.mintthemoon.xyz",
-    "https://test-lcd-kujira.mintthemoon.xyz",
+    "https://phoenix-lcd.terra.dev",
     [
       {
         coinDenom: "DEMO",
@@ -118,13 +196,13 @@ export const CHAIN_INFO: Record<NETWORK, ChainInfo> = {
       },
     ]
   ),
-  [LOCALNET]: chainInfo(
+  [LOCALNET]: kujiraChainInfo(
     LOCALNET,
     "Kujira Local",
     "http://localhost:26657",
     "http://localhost:1317"
   ),
-  [MAINNET]: chainInfo(
+  [MAINNET]: kujiraChainInfo(
     MAINNET,
     "Kujira",
     "https://rpc.cosmos.directory/kujira",
