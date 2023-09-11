@@ -2,12 +2,12 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { Denom } from "./denom";
 import { NETWORK } from "./network";
 export declare const FILTERED: string[];
-export type OracleDenom = {
+export declare type OracleDenom = {
     live: string;
 } | {
     static: BigNumber;
 };
-export type Market = {
+export declare type Market = {
     address: string;
     owner: string;
     collateralDenom: Denom;
@@ -17,11 +17,11 @@ export type Market = {
     vault: Vault;
     borrowFee: BigNumber;
 };
-export type MarketState = {
+export declare type MarketState = {
     deposited: BigNumber;
     borrowed: BigNumber;
 };
-export type VaultState = {
+export declare type VaultState = {
     deposited: BigNumber;
     lent: BigNumber;
     available: BigNumber;
@@ -40,7 +40,7 @@ export declare const castVaultState: (res: {
 }) => VaultState;
 export declare const DEFAULT_MARKET_STATE: MarketState;
 export declare const DEFAULT_VAULT_STATE: VaultState;
-export type Position = {
+export declare type Position = {
     collateralAmount: BigNumber;
     debtShares: BigNumber;
 };
@@ -48,7 +48,7 @@ export declare const castPosition: (res: {
     debt_shares: number;
     collateral_amount: number;
 }) => Position;
-export type Interest = {
+export declare type Interest = {
     type: "rates";
     value: [BigNumber, BigNumber][];
 } | {
@@ -63,7 +63,7 @@ export type Interest = {
         }
     ][];
 };
-export type Vault = {
+export declare type Vault = {
     address: string;
     owner: string;
     denom: Denom;

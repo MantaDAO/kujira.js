@@ -1,7 +1,7 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { Denom } from "./denom";
 import { NETWORK } from "./network";
-export type Pool = {
+export declare type Pool = {
     address: string;
     owner: string;
     denoms: [Denom, Denom];
@@ -13,7 +13,7 @@ export type Pool = {
     amp: BigNumber;
     margin?: Margin;
 };
-export type PoolResponse = {
+export declare type PoolResponse = {
     owner: string;
     denoms: string[];
     price_precision: {
@@ -25,7 +25,7 @@ export type PoolResponse = {
     fee: string;
     amp: string;
 };
-export type Margin = {
+export declare type Margin = {
     address: string;
     owner: string;
     bowContract: string;
@@ -48,7 +48,7 @@ export type Margin = {
     partialLiquidationTarget: BigNumber;
     borrowFee: BigNumber;
 };
-export type MarginResponse = {
+export declare type MarginResponse = {
     owner: string;
     bow_contract: string;
     denoms: {
@@ -63,7 +63,7 @@ export type MarginResponse = {
     partial_liquidation_target: string;
     borrow_fee: string;
 };
-export type PositionResponse = {
+export declare type PositionResponse = {
     holder: string;
     lp_amount: string;
     ltv: string;
@@ -73,7 +73,7 @@ export type PositionResponse = {
         ratio: string;
     }[];
 };
-export type Position = {
+export declare type Position = {
     holder: string;
     lpAmount: BigNumber;
     ltv: BigNumber;

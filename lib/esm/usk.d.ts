@@ -2,7 +2,7 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { Denom } from "./denom";
 import { NETWORK } from "./network";
 import { KujiraQueryClient } from "./queryClient";
-export type Market = {
+export declare type Market = {
     address: string;
     owner: string;
     stableDenom: Denom;
@@ -17,7 +17,7 @@ export type Market = {
     liquidationThreshold: BigNumber;
     liquidationRatio: number;
 };
-type ConfigResponse = {
+declare type ConfigResponse = {
     owner: string;
     stable_denom: string;
     stable_denom_admin: string;
@@ -31,7 +31,7 @@ type ConfigResponse = {
     liquidation_threshold: string;
     liquidation_ratio: string;
 };
-export type Config = {
+export declare type Config = {
     owner: string;
     stableDenom: string;
     stableDenomAdmin: string;
@@ -45,7 +45,7 @@ export type Config = {
     liquidationThreshold: string;
     liquidationRatio: string;
 };
-export type Status = {
+export declare type Status = {
     debtAmount: BigNumber;
 };
 export declare const castStatus: (res: {
@@ -53,14 +53,14 @@ export declare const castStatus: (res: {
 }) => Status;
 export declare const castConfig: (json: ConfigResponse) => Omit<Market, "address">;
 export declare const MARKETS: Record<NETWORK, Record<string, Market>>;
-export type PositionResponse = {
+export declare type PositionResponse = {
     owner: string;
     deposit_amount: string;
     mint_amount: string;
     interest_amount: string;
     liquidation_price: string | null;
 };
-export type Position = {
+export declare type Position = {
     owner: string;
     deposit_amount: BigNumber;
     mint_amount: BigNumber;

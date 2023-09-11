@@ -1,1 +1,1 @@
-export type Addr = string;
+export declare type Addr = string;

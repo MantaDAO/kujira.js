@@ -11,7 +11,7 @@ export declare const STAKING: {
     "harpoon-4": string;
     "kaiyo-1": string;
 };
-type Config = {
+declare type Config = {
     owner: string;
     denoms: string[] | {
         native: string;

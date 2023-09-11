@@ -21,7 +21,7 @@ export declare enum MarketType {
     FIN = "Margin",
     PERP = "Perpetuals"
 }
-export type Market = {
+export declare type Market = {
     label: string;
     chain: Chain;
     protocol: Protocol;
@@ -41,24 +41,24 @@ export type Market = {
     liquidationFee: number;
     withdrawalFee: number;
 };
-export type Bid = {
+export declare type Bid = {
     idx: number;
     premiumSlot: number;
     amount: BigNumber;
     pendingLiquidatedCollateral: BigNumber;
     waitEnd: Date | null;
 };
-export type BidPool = {
+export declare type BidPool = {
     totalBidAmount: BigNumber;
     premiumRate: number;
     premiumRateInt: BigNumber;
     currentEpoch: number;
 };
-export type BidStrategy = {
+export declare type BidStrategy = {
     activateAt: LTVThreshold;
     deactivateAt: LTVThreshold;
 };
-export type LTVThreshold = {
+export declare type LTVThreshold = {
     ltv: number;
     amount: BigNumber;
 };

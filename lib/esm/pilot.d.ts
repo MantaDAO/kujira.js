@@ -3,7 +3,7 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { NETWORK } from "./network";
 import * as orca from "./orca";
 import { KujiraQueryClient } from "./queryClient";
-type SaleResponse = {
+declare type SaleResponse = {
     idx: string;
     title: string;
     description: string;
@@ -34,7 +34,7 @@ type SaleResponse = {
     };
 };
 export declare const castSale: (network: NETWORK, res: SaleResponse) => Market;
-export type Sale = {
+export declare type Sale = {
     idx: string;
     amount: BigNumber;
     owner: string;
@@ -47,10 +47,10 @@ export type Sale = {
     retracted: Date | null;
     description: string;
 };
-export type Market = Omit<orca.Market, "chain" | "protocol" | "repayDenom" | "type"> & {
+export declare type Market = Omit<orca.Market, "chain" | "protocol" | "repayDenom" | "type"> & {
     sale: Sale;
 };
-export type Pilot = {
+export declare type Pilot = {
     address: string;
     owner: string;
     deposit: Coin;
