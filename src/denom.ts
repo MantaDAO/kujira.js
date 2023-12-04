@@ -48,6 +48,7 @@ const labels: Record<string, string> = {
   aarch: "ARCH",
   aacre: "ACRE",
   aplanq: "PLQ",
+  adydx: "DYDX",
   ufrienzies: "FRNZ",
   stinj: "stINJ",
   nanomobx: "MOBX",
@@ -394,6 +395,8 @@ export class Denom {
     if (this.symbol === "SHIB") this.decimals = 18;
     if (this.symbol === "MOBX") this.decimals = 9;
     if (this.symbol === "ARCH") this.decimals = 18;
+    if (this.symbol === "DYDX") this.decimals = 18;
+
     if (
       this.underlying?.length === 2 &&
       this.underlying[0].decimals === this.underlying[1].decimals

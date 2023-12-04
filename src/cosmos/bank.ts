@@ -9,12 +9,16 @@ import {
   QueryClientImpl,
   QueryTotalSupplyResponse,
 } from "cosmjs-types/cosmos/bank/v1beta1/query";
+import { PageRequest } from "cosmjs-types/cosmos/base/query/v1beta1/pagination";
 import "text-encoding";
 
 export type BankExtensionExtended = {
   readonly bank: {
     readonly balance: (address: string, denom: string) => Promise<Coin>;
-    readonly allBalances: (address: string) => Promise<Coin[]>;
+    readonly allBalances: (
+      address: string,
+      pagination?: PageRequest
+    ) => Promise<Coin[]>;
     readonly spendableBalances: (address: string) => Promise<Coin[]>;
     readonly totalSupply: (
       paginationKey?: Uint8Array
@@ -36,6 +40,13 @@ export function setupBankExtensionExtended(
   return {
     bank: {
       ...setupBankExtension(base).bank,
+      allBalances: async (address: string, pagination?: PageRequest) => {
+        const { balances } = await queryService.AllBalances({
+          address,
+          pagination,
+        });
+        return balances;
+      },
       spendableBalances: async (address: string) => {
         const { balances } = await queryService.SpendableBalances({
           address: address,
